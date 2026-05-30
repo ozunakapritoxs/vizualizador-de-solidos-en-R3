@@ -1,7 +1,7 @@
-// main.js — Three.js setup, scene, camera, axes, grid, render loop, UI
+// main.js — Three.js setup, escena, camara, ejes, cuadricula, loop de renderizado, UI
 import { SOLIDS } from './data.js';
 
-// ═══ RENDERER & SCENE ════════════════════════════════════════════
+//  RENDERIZADO Y ESCENAS ═
 const canvas = document.getElementById('cv');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -19,18 +19,18 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
-// ═══ LIGHTS ══════════════════════════════════════════════════════
+// LUCES
 scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 const dL1 = new THREE.DirectionalLight(0xccd8ff, 1.1); dL1.position.set(6,9,5);   scene.add(dL1);
 const dL2 = new THREE.DirectionalLight(0xffa080, 0.4); dL2.position.set(-5,-3,-4); scene.add(dL2);
 const dL3 = new THREE.DirectionalLight(0x80ffc0, 0.2); dL3.position.set(0,-8,2);   scene.add(dL3);
 
-// ═══ COORDINATE MAPPING ══════════════════════════════════════════
+// MAPEO COORDINADO
 // Math (x,y,z) with z-up  →  Scene: math-x→sceneZ, math-y→sceneX, math-z→sceneY
 // Axis colors: x=blue(#5577e0), y=red(#e05555), z=green(#55c055)
 export function V3m(mx, my, mz) { return new THREE.Vector3(my, mz, mx); }
 
-// ═══ AXES ════════════════════════════════════════════════════════
+// EJES
 const AXLEN = 3.5;
 
 function makeLine(p1, p2, color) {
@@ -82,13 +82,13 @@ for (let i=1; i<=3; i++) axGroup.add(makeTick([0,i,0], 0x55c055));
 
 scene.add(axGroup);
 
-// ═══ GRID (math XY plane = scene XZ plane) ═══════════════════════
+// CUADRICULA (math XY plane = scene XZ plane) 
 const gridXY = new THREE.GridHelper(8, 16, 0x4a5470, 0x2e3850);
 gridXY.material.opacity = 0.5;
 gridXY.material.transparent = true;
 scene.add(gridXY);
 
-// ═══ GEOMETRY HELPERS (shared with solid builders) ════════════════
+// AYUDAS DE LA GEOMETRIA (compartido con el constructor de solidos)
 export function paramGeo(fn, uN, vN) {
   const pos = [], idx = [];
   for (let i=0; i<=uN; i++) for (let j=0; j<=vN; j++) {
@@ -114,12 +114,12 @@ export function addSurf(grp, geo, color, opacity=0.72) {
 
 const helpers = { V3m, paramGeo, addSurf };
 
-// ═══ SOLID GROUP ══════════════════════════════════════════════════
+// GRUPO SOLIDOS
 let solidGrp = new THREE.Group();
 scene.add(solidGrp);
 function clearSolid() { scene.remove(solidGrp); solidGrp = new THREE.Group(); scene.add(solidGrp); }
 
-// ═══ ORBIT CAMERA ════════════════════════════════════════════════
+// CAMARA ORBITAL
 let theta=0.55, phi=0.68, radius=11, panX=0, panY=1.2;
 let isDrag=false, isRMB=false, lx=0, ly=0;
 
@@ -164,7 +164,7 @@ canvas.addEventListener('touchmove', e => {
   }
 }, { passive: true });
 
-// ═══ SIDEBAR ═════════════════════════════════════════════════════
+//  SIDEBAR
 const listEl = document.getElementById('solidList');
 SOLIDS.forEach((s, i) => {
   const btn = document.createElement('button');
