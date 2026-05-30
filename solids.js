@@ -1,7 +1,7 @@
-// solids.js — geometric builders for each solid
-// All coords in math convention (x,y horizontal; z=up).
-// V3m(mx,my,mz) is imported from main.js via the shared scene setup.
-// Each function receives (grp, helpers) where helpers = { V3m, paramGeo, addSurf }
+// solids.js — constructores geométricos de cada sólido
+// Todas las coordenadas siguen la convención matemática (x,y horizontales; z=arriba).
+// V3m(mx,my,mz) se importa desde main.js a través de la configuración compartida de la escena.
+// Cada función recibe (grp, helpers) donde helpers = { V3m, paramGeo, addSurf }
 
 export function buildSolid1(grp, { V3m, paramGeo, addSurf }) {
   // Exterior al cono z=r, interior al cilindro r=1, z≥0
