@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>∭ Integrales Triples</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  startup: { typeset: false }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">∭ <em>Integrales Triples</em></div>
+  <div class="subtitle">Visualizador 3D interactivo</div>
+  <div class="badge">Cálculo III</div>
+</header>
+
+<div class="body-wrap">
+  <aside class="sidebar">
+    <div class="sidebar-head">Sólidos</div>
+    <div class="solid-list" id="solidList"></div>
+  </aside>
+  <div class="canvas-area">
+    <canvas id="cv"></canvas>
+    <div class="hint">🖱 Arrastrar → rotar<br>⚙ Scroll → zoom<br>🖱 Derecho → pan</div>
+    <div class="axis-key">
+      <span><span class="dot" style="background:#5577e0"></span> eje x</span>
+      <span><span class="dot" style="background:#e05555"></span> eje y</span>
+      <span><span class="dot" style="background:#55c055"></span> eje z</span>
+    </div>
+    <div class="solid-name-overlay" id="overlayName"></div>
+  </div>
+</div>
+
+<div class="info">
+  <div class="info-block integral-wrap">
+    <div class="info-label l1">Integral triple</div>
+    <div class="integral-box" id="integralBox"><span class="empty-msg">← Selecciona un sólido</span></div>
+  </div>
+  <div class="desc-wrap" id="descWrap">
+    <div class="info-label l2">Descripción</div>
+    <div class="empty-msg">Selecciona un sólido de la lista.</div>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
